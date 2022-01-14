@@ -49,13 +49,6 @@ const customers = [
     { id: 10, name: "Alberta Lehner", yearOfBirth: 1991, monthOfBirth: "April" }
 ]
 
-/*
-        2022
-        "April"
-        ---------------
-        Lisa Jackson is n years old
-        Michael Weathersby is n years old
-*/
 
 const displayCustomerString = (customerObject, currentYear) => {
     // Calculate customer age using yearOfBirth property and the current year
@@ -70,21 +63,41 @@ for (const year of years) {
 
     // Iterate the months string array
     for (const month of months) {
-        // Print the current year
-        console.log(year)
-        // Print the current month
-        console.log(month)
-        // Print the dashes
-        console.log("---------------")
 
-        // Iterate the customers object array
+        // Start off assuming, no birthday message for the month
+        const birthdayMessages = []
+
+        // Iterate customers
         for (const customer of customers) {
-            // Compare the monthOfBirth property with the current month
+            // Does current customer have a birthday this month?
             if (customer.monthOfBirth === month) {
-                displayCustomerString(customer, year)
+                const currentAge = year - customer.yearOfBirth
+
+                // Add a message with customer info to messages array
+                birthdayMessages.push(`${customer.name} is ${currentAge} years old.`)
             }
         }
-        console.log("\n\n")
+
+        // If there are any messages in the message array
+        if (birthdayMessages.length > 0) {
+            // Print the current year
+            console.log(year)
+            // Print the current month
+            console.log(month)
+            // Print the dashes
+            console.log("---------------")
+
+            // Display messages
+
+            // Iterate the messages array
+            for (const message of birthdayMessages) {
+                // Print the current message
+                console.log(message)
+            }
+
+            console.log("\n\n")
+        }
+
     }
 }
 
